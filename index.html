@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oliverz Travel's - Your Premium Private Hire Solution</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 0; }
+        .container { width: 90%; margin: 0 auto; padding: 15px; }
+        nav ul { list-style: none; padding: 0; }
+        nav ul li { display: inline-block; margin: 0 10px; }
+        .logo { max-width: 120px; }
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block !important; }
+            nav ul { display: none; }
+            nav ul.active { 
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            nav ul.active li {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="img/logo.png" alt="Oliverz Travels Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Premium Private Hire Services</h1>
+            <p>Experience luxury, comfort, and reliability with Oliver'z Travels</p>
+            <a href="contact.html" class="btn">Book Your Journey</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Premium Services</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <i class="fas fa-plane-arrival"></i>
+                    <h3>Airport Transfers</h3>
+                    <p>Reliable and punctual airport transfers with meet & greet service available.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-route"></i>
+                    <h3>City Tours</h3>
+                    <p>Explore the city in style with our professional chauffeur-guided tours.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-glass-cheers"></i>
+                    <h3>Event Transportation</h3>
+                    <p>Make your special occasions memorable with our luxury transport service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Oliver'z Travels</h2>
+            <p>At Oliver'z Travels, we redefine luxury transportation. Our commitment to excellence is reflected in every journey we undertake. With a fleet of modern vehicles and professional drivers, we ensure your travel experience is nothing short of exceptional.</p>
+            <p>Whether it's an airport transfer, a special event, or a city tour, we pride ourselves on delivering reliable, comfortable, and sophisticated transportation services tailored to your needs.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Oliver'z Travels. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav ul');
+        
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            nav.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && 
+                !e.target.closest('.mobile-menu-btn') && 
+                nav.classList.contains('active')) {
+                menuBtn.classList.remove('active');
+                nav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                menuBtn.classList.remove('active');
+                nav.classList.remove('active');
+                document.body.style.overflow = '';
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
